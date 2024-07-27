@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "llist.h"
 
 Node *makeNode(int val) {
     Node *node = (Node *) malloc(sizeof(node));
@@ -90,6 +90,10 @@ int removeNodeAt(LinkedList *list, int index) {
     return -1;
 }
 
+int removeNodeFromTo(LinkedList *list, int start, int end) {
+    return -1;
+}
+
 int reverse(LinkedList *list) {
     if (empty(list)) {
         return -1;
@@ -112,17 +116,17 @@ int reverse(LinkedList *list) {
     return 1;
 }
 
-// TODO:
+// TODO: complete the function, maybe the static function is not a good idea though...
 int reverseFromTo(LinkedList *list, int start, int end) {
-    Node *first_outer_list;
-    Node *second_outer_list;
-    Node *first_inner_list;
-    Node *second_inner_list;
+    Node *list_anchor_one;
+    Node *list_anchor_two;
+    Node *sublist_anchor_one;
+    Node *sublist_anchor_two;
     Node *current = list->head;
     int index = 1;
     while (current) {
-        if (index == start) {
-            first_outer_list = current;
+        if (index + 1 == start) {
+            list_anchor_one = current;
         }
         current = current->next;
         index++;

@@ -15,6 +15,7 @@ LinkedList *makeList();
 int insertNode(LinkedList *list, Node *node);
 int removeNode(LinkedList *list);
 int removeNodeAt(LinkedList *list, int index);
+int removeNodeFromTo(LinkedList *list, int start, int end);
 int reverse(LinkedList *list);
 int reverseFromTo(LinkedList *list, int start, int end);
 int empty(LinkedList *list);
