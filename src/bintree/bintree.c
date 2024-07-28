@@ -72,14 +72,13 @@ void printDFS(BinaryTree *bintree) {
 static Stack *makeStack(BinaryTree *bintree) {
     Stack *stack = (Stack *) malloc(sizeof(Stack));
     stack->list = (Node **) malloc(sizeof(Node *) * bintree->size);
-    stack->size = bintree->size;
+    stack->size = 0;
     return stack;
 }
 
 static int push(Stack *stack, Node *node) {
     // should be this way...
-    // stack->list[stack->size] = &node;
-    stack->list[stack->size] = node;
+    stack->list[stack->size] = &node;
     stack->size++;
     return 1;
 }
