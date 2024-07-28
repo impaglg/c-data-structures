@@ -60,9 +60,9 @@ void printDFS(BinaryTree *bintree) {
     printf("[ ");
     while (!sempty(stack)) {
         current = pop(stack);
-        count == bintree->size ? printf("%d, ", current->val) : printf("%d ]\n", current->val);
-        push(stack, current->right);
-        push(stack, current->left);
+        count == bintree->size ? printf("%d ]\n", current->val) : printf("%d, ", current->val);
+        if (current->right) push(stack, current->right);
+        if (current->left) push(stack, current->left);
         count++;
     }
 }
@@ -71,14 +71,13 @@ void printDFS(BinaryTree *bintree) {
 
 static Stack *makeStack(BinaryTree *bintree) {
     Stack *stack = (Stack *) malloc(sizeof(Stack));
-    stack->list = (Node **) malloc(sizeof(Node *) * bintree->size);
+    stack->list = (Node **) malloc(sizeof(Node **) * bintree->size);
     stack->size = 0;
     return stack;
 }
 
 static int push(Stack *stack, Node *node) {
-    // should be this way...
-    stack->list[stack->size] = &node;
+    stack->list[stack->size] = node;
     stack->size++;
     return 1;
 }
