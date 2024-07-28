@@ -11,13 +11,13 @@ Stack *makeStack() {
 }
 
 Stack *stackResize(Stack *stack) {
-    stack->array = (int *) realloc(stack, sizeof(int) * stack->max_size * 2);
+    stack->array = (int *) realloc(stack->array, sizeof(int) * stack->max_size * 2);
     stack->max_size *= 2;
     return stack;
 }
 
 Stack *stackDownsize(Stack *stack) {
-    stack->array = (int *) realloc(stack, sizeof(int) * (stack->max_size / 2));
+    stack->array = (int *) realloc(stack->array, sizeof(int) * (stack->max_size / 2));
     stack->max_size /= 2;
     return stack;
 }
@@ -32,12 +32,12 @@ int push(Stack *stack, int val) {
 }
 
 int pop(Stack *stack) {
+    int val = stack->array[stack->size - 1];
     if (stack->size - 1 == stack->max_size / 2) {
         stack = stackDownsize(stack);
     }
-    int retval = stack->array[stack->size];
     stack->size--;
-    return retval;
+    return val;
 }
 
 void print(Stack *stack) {
