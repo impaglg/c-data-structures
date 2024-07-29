@@ -67,7 +67,20 @@ void printDFS(BinaryTree *bintree) {
     }
 }
 
-// void printBFS(BinaryTree *bintree);
+void printBFS(BinaryTree *bintree) {
+    Node *current;
+    Queue *queue = makeQueue(bintree);
+    enqueue(queue, bintree->root);
+    int count = 1;
+    printf("[ ");
+    while (!qempty(queue)) {
+        current = dequeue(queue);
+        count == bintree->size ? printf("%d ]\n", current->val) : printf("%d, ", current->val);
+        if (current->left) enqueue(queue, current->left);
+        if (current->right) enqueue(queue, current->right);
+        count++;
+    }
+}
 
 static Stack *makeStack(BinaryTree *bintree) {
     Stack *stack = (Stack *) malloc(sizeof(Stack));
@@ -92,8 +105,31 @@ static int sempty(Stack *stack) {
     return stack->size == 0;
 }
 
-// static Queue *makeQueue();
-// static int enqueue(Queue *queue, Node *node);
-// static Node *dequeue(Queue *queue, int index);
-// static int qempty(Queue *queue);
+static Queue *makeQueue(BinaryTree *bintree) {
+    Queue *queue = (Queue *) malloc(sizeof(Queue));
+    queue->list = (Node **) malloc(sizeof(Node **) * bintree->size);
+    queue->len = 0;
+    queue->front = 0;
+    return queue;
+}
+
+static int enqueue(Queue *queue, Node *node) {
+    queue->list[queue->len] = node;
+    queue->len++;
+    return 1;
+}
+
+static Node *dequeue(Queue *queue) {
+    Node *ret = queue->list[0];
+    for (int i = 1; i < queue->len + 1; i++) {
+        queue->list[i - 1] = queue->list[i];
+    }
+    queue->len--;
+    return ret;
+}
+
+static int qempty(Queue *queue) {
+    return queue->len == 0;
+}
+
 // void freeBinaryTree(BinaryTree *bintree);

@@ -12,6 +12,7 @@ int main(int argc, char **argv) {
     append(bintree, makeNode(2));
     append(bintree, makeNode(13));
     printDFS(bintree);
+    printBFS(bintree);
 
     return EXIT_SUCCESS;
 }

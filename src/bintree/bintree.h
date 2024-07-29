@@ -18,7 +18,8 @@ typedef struct Stack {
 
 typedef struct Queue {
     Node **list;
-    int size;
+    int len;
+    int front;
 } Queue;
 
 BinaryTree *makeBinaryTree();
@@ -33,8 +34,8 @@ static Stack *makeStack(BinaryTree *bintree);
 static int push(Stack *stack, Node *node);
 static Node *pop(Stack *stack);
 static int sempty(Stack *stack);
-static Queue *makeQueue();
+static Queue *makeQueue(BinaryTree *bintree);
 static int enqueue(Queue *queue, Node *node);
-static Node *dequeue(Queue *queue, int index);
+static Node *dequeue(Queue *queue);
 static int qempty(Queue *queue);
 void freeBinaryTree(BinaryTree *bintree);
