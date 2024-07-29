@@ -25,7 +25,7 @@ typedef struct Queue {
 BinaryTree *makeBinaryTree();
 Node *makeNode(int val);
 int append(BinaryTree *bintree, Node *node);
-Node *pick(BinaryTree *bintree);
+Node *pick(BinaryTree *bintree, int val);
 int empty(BinaryTree *bintree);
 int size(BinaryTree *bintree);
 void printDFS(BinaryTree *bintree);
@@ -38,4 +38,4 @@ static Queue *makeQueue(BinaryTree *bintree);
 static int enqueue(Queue *queue, Node *node);
 static Node *dequeue(Queue *queue);
 static int qempty(Queue *queue);
-void freeBinaryTree(BinaryTree *bintree);
+// void freeBinaryTree(BinaryTree *bintree);

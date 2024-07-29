@@ -42,7 +42,8 @@ int append(BinaryTree *bintree, Node *node) {
     return 1;
 }
 
-// Node *pick(BinaryTree *bintree);
+// TODO: this function allows for the removal of any node in the tree
+// Node *pick(BinaryTree *bintree, int val);
 
 int empty(BinaryTree *bintree) {
     return bintree->size == 0;
