@@ -28,6 +28,8 @@ int append(BinaryTree *bintree, Node *node);
 Node *pick(BinaryTree *bintree, int val);
 int empty(BinaryTree *bintree);
 int size(BinaryTree *bintree);
+int isLeaf(Node *node);
+int hasSingleChild(Node *node);
 void printDFS(BinaryTree *bintree);
 void printBFS(BinaryTree *bintree);
 static Stack *makeStack(BinaryTree *bintree);
