@@ -46,23 +46,23 @@ int append(BinaryTree *bintree, Node *node) {
 Node *pick(BinaryTree *bintree, int val) {
     Node *current = bintree->root;
     while (current) {
-        if (current->val == val) {
-            if (isLeaf(current)) {
-                // do the thing
-                break;
-            } else if (hasSingleChild(current)) {
-                // do the thing again
-                break;
-            } else {
-                // do that other thing
-                break;
-            }
+        if (current->val == val && isLeaf(current)) {
+            // do the thing
+            break;
+        } else if (current->val == val && hasSingleChild(current)) {
+            // do the thing again
+            break;
+        } else {
+            // do that other thing
+            break;
         }
         if (current->val > val) {
             current = current->left;
+            continue;
         }
         if (current->val < val) {
             current = current->right;
+            continue;
         }
     }
     return current;
