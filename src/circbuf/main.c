@@ -4,7 +4,13 @@
 
 int main(int argc, char **argv) {
 
-    // code here
+    CircularBuffer *buffer = makeBuffer(10);
+    for (int i = 1; i < buffer->MAX_SIZE; i++) {
+        enqueue(buffer, i * 10);
+    }
+    printBuffer(buffer);
+    dequeue(buffer);
+    printBuffer(buffer);
 
     return EXIT_SUCCESS;
 }
