@@ -12,4 +12,4 @@ int dequeue(CircularBuffer *buffer);
 int updateRead(CircularBuffer *buffer);
 int updateWrite(CircularBuffer *buffer);
 void printBuffer(CircularBuffer *buffer);
-// void freeBuffer(CircularBuffer *buffer);
+void freeBuffer(CircularBuffer *buffer);

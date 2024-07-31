@@ -44,10 +44,18 @@ int append(BinaryTree *bintree, Node *node) {
 
 // TODO: this function allows for the removal of any node in the tree
 Node *pick(BinaryTree *bintree, int val) {
+    Node *prev;
+    Node *temp;
     Node *current = bintree->root;
     while (current) {
         if (current->val == val && isLeaf(current)) {
-            // do the thing
+            if (prev->val < current->val) {
+                prev->right = NULL;
+                bintree->size--;
+            } else {
+                prev->left = NULL;
+                bintree->size--;
+            }
             break;
         } else if (current->val == val && hasSingleChild(current)) {
             // do the thing again
@@ -57,10 +65,12 @@ Node *pick(BinaryTree *bintree, int val) {
             break;
         }
         if (current->val > val) {
+            prev = current;
             current = current->left;
             continue;
         }
         if (current->val < val) {
+            prev = current;
             current = current->right;
             continue;
         }
