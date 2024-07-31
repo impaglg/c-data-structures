@@ -59,8 +59,8 @@ int updateWrite(CircularBuffer *buffer) {
 // TODO: print an empty array if the array is empty -- DUH!!!
 void printBuffer(CircularBuffer *buffer) {
     printf("[ ");
-    for (int i = buffer->read; i < buffer->write; i++) {
-        i + 1 == buffer->write ? printf("%d ]\n", buffer->buffer[i]) : printf("%d, ", buffer->buffer[i]);
+    for (int i = buffer->read; i < buffer->write + buffer->size - 1; i++) {
+        i + 1 == buffer->write + buffer->size - 1 ? printf("%d ]\n", buffer->buffer[i]) : printf("%d, ", buffer->buffer[i]);
     }
 }
 
