@@ -48,34 +48,20 @@ Node *pick(BinaryTree *bintree, int val) {
     Node *temp;
     Node *current = bintree->root;
     while (current) {
-        if (current->val == val && isLeaf(current)) {
-            if (prev->val < current->val) {
-                prev->right = NULL;
-                bintree->size--;
-            } else {
-                prev->left = NULL;
-                bintree->size--;
-            }
-            break;
-        } else if (current->val == val && hasSingleChild(current)) {
-            // do the thing again
-            break;
-        } else {
-            // do that other thing
-            break;
+        if (current->val == val) {
+            bintree->size--;
+            return current;
         }
         if (current->val > val) {
             prev = current;
             current = current->left;
-            continue;
         }
         if (current->val < val) {
             prev = current;
             current = current->right;
-            continue;
         }
     }
-    return current;
+    return NULL;
 }
 
 int empty(BinaryTree *bintree) {
