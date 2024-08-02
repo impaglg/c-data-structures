@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
     append(bintree, makeNode(13));
     printDFS(bintree);
     printf("The size of the binary tree is: %d\n", size(bintree));
-    pick(bintree, 13);
+    pick(bintree, 4);
     printDFS(bintree);
     printf("The size of the binary tree is: %d\n", size(bintree));
     // Node *pickedNode = pick(bintree, 21);

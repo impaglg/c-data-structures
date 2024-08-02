@@ -49,7 +49,6 @@ Node *pick(BinaryTree *bintree, int val) {
     Node *current = bintree->root;
     while (current) {
         if (current->val == val) {
-            // if the node is a leaf node, point the previous node to null and decrease the size
             if (isLeaf(current)) {
                 if (prev->val < current->val) {
                     prev->right = NULL;
@@ -60,8 +59,28 @@ Node *pick(BinaryTree *bintree, int val) {
                 return current;
             }
             // if the node is a single parent, find the smallest node in the subtree and set it to the prev node,
-            //    then  
+            if ((current->right == NULL && current->left != NULL) && prev->val < current->val) {
+                prev->right = current->left;
+                bintree->size--;
+                return current;
+            }
+            if ((current->right == NULL && current->left != NULL) && prev->val > current->val) {
+                prev->left = current->left;
+                bintree->size--;
+                return current;
+            }
+            if ((current->right != NULL && current->left == NULL) && prev->val < current->val) {
+                prev->right = current->right;
+                bintree->size--;
+                return current;
+            }
+            if ((current->right != NULL && current->left == NULL) && prev->val > current->val) {
+                prev->left = current->right;
+                bintree->size--;
+                return current;
+            }
             // if the subtree is complete, then ... // go on man... //
+            // code here
         }
         if (current->val > val) {
             prev = current;
