@@ -44,13 +44,24 @@ int append(BinaryTree *bintree, Node *node) {
 
 // TODO: this function allows for the removal of any node in the tree
 Node *pick(BinaryTree *bintree, int val) {
-    Node *prev;
     Node *temp;
+    Node *prev;
     Node *current = bintree->root;
     while (current) {
         if (current->val == val) {
-            bintree->size--;
-            return current;
+            // if the node is a leaf node, point the previous node to null and decrease the size
+            if (isLeaf(current)) {
+                if (prev->val < current->val) {
+                    prev->right = NULL;
+                } else {
+                    prev->left = NULL;
+                }
+                bintree->size--;
+                return current;
+            }
+            // if the node is a single parent, find the smallest node in the subtree and set it to the prev node,
+            //    then  
+            // if the subtree is complete, then ... // go on man... //
         }
         if (current->val > val) {
             prev = current;
@@ -73,11 +84,11 @@ int size(BinaryTree *bintree) {
 }
 
 int isLeaf(Node *node) {
-    return !node->left && !node->right;
+    return node->left == NULL && node->right == NULL;
 }
 
-int hasSingleChild(Node *node) {
-    return node->left && !node->right || node->right && !node->left;
+int isComplete(Node *node) {
+    return node->left && node->right;
 }
 
 void printDFS(BinaryTree *bintree) {
