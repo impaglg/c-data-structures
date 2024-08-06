@@ -26,6 +26,8 @@ int main(int argc, char **argv) {
     }
     printList(list);
     printf("The size of the list is: %d\n", size(list));
+    reverseFromTo(list, 3, 7);
+    printList(list);
 
     return EXIT_SUCCESS;
 

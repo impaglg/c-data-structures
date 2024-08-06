@@ -117,17 +117,39 @@ int reverse(LinkedList *list) {
 }
 
 // TODO: complete the function, maybe the static function is not a good idea though...
+// [ 13, 9, 18, 7, 11, 7, 36, 71, 10 ]
 int reverseFromTo(LinkedList *list, int start, int end) {
+    if (empty(list) || start < 1 || end > list->size) {
+        return -1;
+    }
     Node *list_anchor_one;
     Node *list_anchor_two;
-    Node *sublist_anchor_one;
-    Node *sublist_anchor_two;
+    Node *sublist_tail;
+    Node *sublist_head;
     Node *current = list->head;
+    Node *prev;
+    Node *next;
     int index = 1;
     while (current) {
-        if (index + 1 == start) {
-            list_anchor_one = current;
+        if (index == start) {
+            list_anchor_one = prev;
+            sublist_head = current;
+            current = current->next;
+            index++;
+            while (index != end) {
+                next = current->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+                index++;
+            }
+            sublist_tail = current;
+            list_anchor_two = next;
+            sublist_head->next = list_anchor_two;
+            sublist_tail->next = list_anchor_one;
+            return 1;
         }
+        prev = current;
         current = current->next;
         index++;
     }
@@ -152,4 +174,5 @@ void printList(LinkedList *list) {
         current->next == NULL ? printf("%d ]\n", current->val) : printf("%d, ", current->val);
         current = current->next;
     }
+    return;
 }
