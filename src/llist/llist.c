@@ -92,12 +92,12 @@ int removeNodeFromTo(LinkedList *list, int start, int end) {
     if (empty(list) || size(list) == 1 || start < 1 || end > size(list) || start >= end) {
         return -1;
     }
-    int count = 0;
+    int count = 1;
     Node *temp;
     Node *current = list->head;
     while (current) {
         if (count + 1 == start) {
-            while (count != end - 1) {
+            while (count != end) {
                 temp = current->next;
                 current->next = temp->next;
                 free(temp);
