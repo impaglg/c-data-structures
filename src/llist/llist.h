@@ -20,4 +20,5 @@ int reverse(LinkedList *list);
 int reverseFromTo(LinkedList *list, int start, int end);
 int empty(LinkedList *list);
 int size(LinkedList *list);
+int has(LinkedList *list, int val);
 void printList(LinkedList *list);

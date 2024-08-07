@@ -55,10 +55,7 @@ int removeNode(LinkedList *list) {
 }
 
 int removeNodeAt(LinkedList *list, int index) {
-    if (empty(list)) {
-        return -1;
-    }
-    if (index > size(list)) {
+    if (empty(list) || index > size(list)) {
         return -1;
     }
     if (index == 1) {
@@ -122,36 +119,40 @@ int reverseFromTo(LinkedList *list, int start, int end) {
     if (empty(list) || start < 1 || end > list->size) {
         return -1;
     }
-    Node *list_anchor_one;
-    Node *list_anchor_two;
+    Node *anchor_one;
+    Node *anchor_two;
     Node *sublist_tail;
     Node *sublist_head;
     Node *current = list->head;
     Node *prev;
     Node *next;
-    int index = 1;
+    int count = 1;
     while (current) {
-        if (index == start) {
-            list_anchor_one = prev;
+        if (count == start) {
+            anchor_one = prev;
             sublist_head = current;
-            current = current->next;
-            index++;
-            while (index != end) {
+            next = current->next;
+            current->next = NULL;
+            prev = current;
+            current = next;
+            count++;
+            while (count != end) {
                 next = current->next;
                 current->next = prev;
                 prev = current;
                 current = next;
-                index++;
+                count++;
             }
             sublist_tail = current;
-            list_anchor_two = next;
-            sublist_head->next = list_anchor_two;
-            sublist_tail->next = list_anchor_one;
+            anchor_two = current->next;
+            current->next = prev;
+            anchor_one->next = current;
+            sublist_head->next = anchor_two;
             return 1;
         }
         prev = current;
         current = current->next;
-        index++;
+        count++;
     }
     return -1;
 }
@@ -162,6 +163,20 @@ int empty(LinkedList *list) {
 
 int size(LinkedList *list) {
     return list->size;
+}
+
+int has(LinkedList *list, int val) {
+    if (empty(list)) {
+        return -1;
+    }
+    Node *current = list->head;
+    while (current) {
+        if (current->val == val) {
+            return 1;
+        }
+        current = current->next;
+    }
+    return -1;
 }
 
 void printList(LinkedList *list) {
