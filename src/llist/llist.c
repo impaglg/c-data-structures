@@ -87,7 +87,28 @@ int removeNodeAt(LinkedList *list, int index) {
     return -1;
 }
 
+// TODO:
 int removeNodeFromTo(LinkedList *list, int start, int end) {
+    if (empty(list) || size(list) == 1 || start < 1 || end > size(list) || start >= end) {
+        return -1;
+    }
+    int count = 0;
+    Node *temp;
+    Node *current = list->head;
+    while (current) {
+        if (count + 1 == start) {
+            while (count != end - 1) {
+                temp = current->next;
+                current->next = temp->next;
+                free(temp);
+                list->size--;
+                count++;
+            }
+            return 1;
+        }
+        current = current->next;
+        count++;
+    }
     return -1;
 }
 
@@ -113,8 +134,6 @@ int reverse(LinkedList *list) {
     return 1;
 }
 
-// TODO: complete the function, maybe the static function is not a good idea though...
-// [ 13, 9, 18, 7, 11, 7, 36, 71, 10 ]
 int reverseFromTo(LinkedList *list, int start, int end) {
     if (empty(list) || start < 1 || end > list->size) {
         return -1;

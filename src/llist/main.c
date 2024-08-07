@@ -28,6 +28,9 @@ int main(int argc, char **argv) {
     printf("The size of the list is: %d\n", size(list));
     reverseFromTo(list, 3, 7);
     printList(list);
+    removeNodeFromTo(list, 2, 5);
+    printList(list);
+    printf("The size of the list is: %d\n", size(list));
 
     return EXIT_SUCCESS;
 
